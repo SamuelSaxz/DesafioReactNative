@@ -1,56 +1,70 @@
 // Functions React Native and Expo Router
 import { Button, Pressable, Text, View } from "react-native";
-import { Link, router } from "expo-router";
+import { router } from "expo-router";
 
 // components
-import PhotoProfile from "../PhotoProfile";
+import PhotoProfile from "@/src/components/PhotoProfile";
 
 // styles
-import { styles } from "./styles";
+import { styles } from "@/src/components/Repository/styles";
 import theme from "@/src/theme";
 
 // icons
-import { AntDesign, Ionicons, MaterialIcons } from "@expo/vector-icons";
+import { AntDesign, Ionicons } from "@expo/vector-icons";
+import { connect } from "react-redux";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import { useState } from "react";
 
-// Functions React
-import { useEffect, useState } from "react";
+function ViewRepository({ repository, searchRepository, dispatch, search}: { repository: any, searchRepository: any, dispatch: any, search?: boolean }) {
+  const [toogle, setToogle] = useState(true);
 
-// Axios
-import axios from "axios";
-
-export default function ViewRepository({ user }: { user: string }) {
-  const [data, setData] = useState([{
-    id: 0,
-    name: "",
-    description: "",
-    stargazers_count: 0,
-    forks_count: 0,
-    language: "",
-    parent: {
-      language: "",
+  function getSortedRepositories() {
+    if(search) {
+      return toogle 
+      ? [...searchRepository].sort((a, b) => b.stargazers_count - a.stargazers_count) 
+      : searchRepository;
     }
-  }]);
+    return toogle
+      ? [...repository].sort((a, b) => b.stargazers_count - a.stargazers_count)
+      : repository;
+  }
 
-  useEffect(() => {
-    async function getUser() {
-      try {
-        const response = await axios.get(`https://api.github.com/users/${user}/repos`);
-        setData(response.data);
-      }
-      catch (error: any) {
-        console.log(error.message);
-      }
-    }
-    getUser();
-  }, []);
+  function viewDetails(index: number) {
+    dispatch({ type: "SET_DETAILSREPOSITORY", payload: index });
+    router.push("/details");
+  }
+
+  const sortedRepositories = getSortedRepositories();
 
   return (
     <>
+      <View style={{
+        flex: 1,
+        flexDirection: "row",
+        gap: 12,
+        marginTop: 24,
+      }}>
+        <Text style={[styles.title, {
+          flex: 1,
+          textAlign: "right",
+          fontSize: theme.fonts.size.xl,
+        }]}>
+          Ordenar Por:
+        </Text>
+        <TouchableOpacity onPress={() => setToogle(!toogle)}>
+          <Text style={[styles.title, {
+            color: theme.colors.blue,
+            fontSize: theme.fonts.size.xl,
+          }]}>
+            {toogle ? "Mais Estrelas" : "Nome"}
+          </Text>
+        </TouchableOpacity>
+      </View>
       {
-        data.sort((a, b) => b.stargazers_count - a.stargazers_count).map((item, index) => (
+        sortedRepositories.map((item: any) => (
           <View style={styles.ViewRepository} key={item.id}>
             <PhotoProfile style={styles.photoProfile}
-              source={{ uri: "https://github.com/" + user + ".png" }} />
+              source={{ uri: (`${item.owner.avatar_url}`) }} />
             <View
               style={{
                 flex: 1,
@@ -70,9 +84,7 @@ export default function ViewRepository({ user }: { user: string }) {
                     {item.forks_count < 999 ? item.forks_count : '999+'}
                   </Text>
                 </View>
-                <Pressable>
-                  <Button title="Ver Detalhes" onPress={() => { router.push("/details") }} />
-                </Pressable>
+                <Button title="Ver Detalhes" onPress={(() => viewDetails(item))} />
               </View>
             </View>
           </View>
@@ -81,3 +93,8 @@ export default function ViewRepository({ user }: { user: string }) {
     </>
   );
 }
+
+export default connect((state: any) => ({
+  repository: state.repository,
+  searchRepository: state.searchRepository,
+}))(ViewRepository);

@@ -1,6 +1,5 @@
 import theme from "@/src/theme";
 import { StyleSheet } from "react-native";
-import ViewRepository from ".";
 
 export const styles = StyleSheet.create({
   title: {
