@@ -23,7 +23,7 @@ export default function Repository() {
         showsVerticalScrollIndicator={false}
       >
         <Text style={styles.text}>Seus Repositórios</Text>
-        <ViewRepository user="cardTunic" />
+        <ViewRepository />
       </ScrollView>
     </View>
   );
