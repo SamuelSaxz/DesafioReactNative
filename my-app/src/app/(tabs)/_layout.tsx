@@ -2,8 +2,9 @@ import PhotoProfile from "@/src/components/PhotoProfile";
 import theme from "@/src/theme";
 import { Foundation, MaterialCommunityIcons } from "@expo/vector-icons";
 import { Tabs } from "expo-router";
+import { connect } from "react-redux";
 
-export default function Layout() {
+function Layout({ user }: any) {
   return (
     <Tabs screenOptions={{
       headerShown: false,
@@ -30,9 +31,11 @@ export default function Layout() {
 
       <Tabs.Screen name="profile" options={{
         title: "Perfil",
-        tabBarIcon: () => <PhotoProfile source={{ uri: "https://github.com/SamuelSaxz.png" }} />,
+        tabBarIcon: () => <PhotoProfile source={{ uri: (`${user.avatar_url}`) }} />,
       }} />
       
     </Tabs>
   );
 }
+
+export default connect((state: any) => ({user: state.user}))(Layout);
