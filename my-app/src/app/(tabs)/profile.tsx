@@ -4,8 +4,9 @@ import PhotoProfile from "@/src/components/PhotoProfile";
 import theme from "@/src/theme";
 import { router } from "expo-router";
 import { ScrollView } from "react-native-gesture-handler";
+import { connect } from "react-redux";
 
-export default function Profile() {
+function Profile({ user }: any) {
   return (
     <View style={{
       flex: 1,
@@ -31,7 +32,7 @@ export default function Profile() {
           borderTopLeftRadius: 12,
           borderTopRightRadius: 12,
         }}
-          source={{ uri: "https://github.com/SamuelSaxz.png" }} />
+          source={{ uri: (`${user.avatar_url}`) }} />
 
         {/* Menu para Seguidores e Seguindo */}
         <View style={{
@@ -55,7 +56,7 @@ export default function Profile() {
               fontFamily: theme.fonts.fontFamily.regular,
               color: theme.colors.blue,
             }]}>
-              100
+              {user.followers}
             </Text>
           </View>
           <View style={{
@@ -73,7 +74,7 @@ export default function Profile() {
               fontFamily: theme.fonts.fontFamily.regular,
               color: theme.colors.blue,
             }]}>
-              100
+              {user.following}
             </Text>
           </View>
         </View>
@@ -91,7 +92,7 @@ export default function Profile() {
               fontFamily: theme.fonts.fontFamily.regular,
             }
           ]}>
-            Samuel Saxz
+            {user.name}
           </Text>
           <Text style={
             {
@@ -100,7 +101,7 @@ export default function Profile() {
               color: theme.colors.gray,
             }
           }>
-            samueldealmeida.aguilar12@gmail.com
+            {user.email}
           </Text>
           <Text style={
             {
@@ -109,7 +110,7 @@ export default function Profile() {
               color: theme.colors.white,
             }
           }>
-            Bio - Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aspernatur facilis corporis beatae temporibus. Aperiam, quo provident aspernatur voluptatum minus reprehenderit perferendis illo, dignissimos vel voluptate illum incidunt, distinctio deleniti itaque. Lorem ipsum dolor sit amet consectetur adipisicing elit. Est quisquam error blanditiis illo alias nihil neque magni qui a molestiae et, quasi totam fuga magnam obcaecati esse, iste repellendus perferendis?
+            Bio - {user.bio}
           </Text>
         </View>
         <View style={{
@@ -121,3 +122,5 @@ export default function Profile() {
     </View>
   );
 }
+
+export default connect((state: any) => ({user: state.user}))(Profile);
