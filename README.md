@@ -3,7 +3,10 @@
 Para esse projeto é necessário ter NodeJS instalado na sua máquina, para que consiga dar prosseguimento na clonagem do projeto em sua máquina.
 ## Demonstração do Projeto
 
-
+![login](./my-app/assets/app/login.png)
+![home](./my-app/assets/app/home.png)
+![profile](./my-app/assets/app/profile.png)
+![repository](./my-app/assets/app/repository.png)
 
 ## Instalação
 
