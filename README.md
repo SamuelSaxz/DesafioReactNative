@@ -1,17 +1,22 @@
 # Bem Vindo há Resolução do Desafio React Native
 
 Para esse projeto é necessário ter NodeJS instalado na sua máquina, para que consiga dar prosseguimento na clonagem do projeto em sua máquina.
+## Demonstração do Projeto
 
-## 1. Clonando Repositório para a sua máquina.
 
-Para clocar o repositório é simples, crie uma pasta com o nome que deseja e abra ela no Vs Code. Ao Entrar no Vs Code abra o Cmd e digite os seguintes códigos.
+
+## Instalação
+
+### 1. Clonando Repositório para a sua máquina.
+
+Para clonar o repositório é simples, crie uma pasta com o nome que deseja e abra ela no Vs Code. Ao Entrar no Vs Code abra o Cmd e digite os seguintes códigos.
 
 ```
 git clone https://github.com/SamuelSaxz/DesafioReactNative.git
 cd my-app
 ```
 
-## 2. Instalando Dependências do Projeto.
+### 2. Instalando Dependências do Projeto.
 
 Quando você clonar os arquivos do projeto para o seu pc é necessário instalar as dependências para que funcione de maneira correta, após clonar escreva o seguinte código no terminal:
 
@@ -19,7 +24,7 @@ Quando você clonar os arquivos do projeto para o seu pc é necessário instalar
 npm install
 ```
 
-## 3. Pronto Podemos Iniciar!
+### 3. Pronto Podemos Iniciar!
 
 Ao chegar nesse módulo você já tem acesso ao projeto e já pode iniciá-lo para ver como está para isso, você precisará fazer mais alguns passos:
 
