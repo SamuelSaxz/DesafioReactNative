@@ -56,7 +56,9 @@ function Home({ searchUser, dispatch }: any) {
       }}>
 
         <View style={styles.form}>
-          <Text style={styles.label}>Procure outros Desenvolvedores</Text>
+          <Text style={[styles.label, {
+            textAlign: "center",
+          }]}>Procure outros Desenvolvedores</Text>
           <TextInput style={styles.input}
             onChangeText={(text) => { setData(text) }}
             placeholder="Digite o Nome do Usuário" />
