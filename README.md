@@ -3,10 +3,8 @@
 Para esse projeto é necessário ter NodeJS instalado na sua máquina, para que consiga dar prosseguimento na clonagem do projeto em sua máquina.
 ## Demonstração do Projeto
 
-![login](./my-app/assets/app/login.jpeg)
-![home](./my-app/assets/app/home.jpeg)
-![profile](./my-app/assets/app/profile.jpeg)
-![repository](./my-app/assets/app/repository.jpeg)
+<image src="./my-app/assets/app/login.jpeg" alt="tela de Login" width="400"> <image src="./my-app/assets/app/home.jpeg" alt="tela inicial do Dashboard" width="400">
+<image src="./my-app/assets/app/profile.jpeg" alt="tela de Perfil" width="400"> <image src="./my-app/assets/app/repository.jpeg" alt="tela de Repositórios" width="400">
 
 ## Instalação
 
